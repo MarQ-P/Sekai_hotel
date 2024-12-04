@@ -1,0 +1,129 @@
+<div class="sidebar-wrapper" data-simplebar="true">
+			<div class="sidebar-header">
+				<div>
+					<img src="{{asset('backend/assets/images/logo-icon.png')}}" class="logo-icon" alt="logo icon">
+				</div>
+				<div>
+					<h4 class="logo-text">Hotel</h4>
+				</div>
+				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
+				</div>
+			 </div>
+			<!--navigation-->
+			<ul class="metismenu" id="menu">
+
+			<li>
+					<a href="{{route('admin.dashboard')}}">
+						<div class="parent-icon"><i class='bx bx-home-alt'></i>
+						</div>
+						<div class="menu-title">Dashboard</div>
+					</a>
+				</li>
+
+	
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-category"></i>
+						</div>
+						<div class="menu-title">Application</div>
+					</a>
+					<ul>
+						<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Email</a>
+						</li>
+						<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
+						</li>
+					
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-category"></i>
+						</div>
+						<div class="menu-title">Manage Team</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('all.team')}}"><i class='bx bx-radio-circle'></i>All team</a>
+						</li>
+					
+					</ul>
+
+					<ul>
+						<li> <a href="{{route('add.team')}}"><i class='bx bx-radio-circle'></i>Add Team</a>
+						</li>
+					
+					</ul>
+
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-category"></i>
+						</div>
+						<div class="menu-title">Manage Quick Booking</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('quickBooking')}}"><i class='bx bx-radio-circle'></i>Update Quick Booking</a>
+						</li>
+					
+					</ul>
+
+				</li>
+				
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-category"></i>
+						</div>
+						<div class="menu-title">Manage Room Type</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('room.type.list')}}"><i class='bx bx-radio-circle'></i>Room Type</a>
+						</li>
+					
+					</ul>
+
+				</li>
+
+				<li class="menu-label">Booking Manage</li>
+			
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-cart'></i>
+						</div>
+						<div class="menu-title">Booking</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('booking.list')}}"><i class='bx bx-radio-circle'></i>Booking List</a>
+						</li>
+						<li> <a href="{{ route('add.room.list') }}"><i class='bx bx-radio-circle'></i>Add Booking </a>
+						</li>
+
+					</ul>
+				</li>
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						</div>
+						<div class="menu-title">Manage Room List</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('view.room.list')}}"><i class='bx bx-radio-circle'></i>Room List</a>
+						</li>
+						
+					</ul>
+				</li>
+							
+				</li>
+	
+				<li class="menu-label">Others</li>
+
+				<li>
+					<a href="https://themeforest.net/user/codervent" target="_blank">
+						<div class="parent-icon"><i class="bx bx-support"></i>
+						</div>
+						<div class="menu-title">Support</div>
+					</a>
+				</li>
+			</ul>
+			<!--end navigation-->
+		</div>
