@@ -21,8 +21,8 @@
 <section class="checkout-area pt-100 pb-70">
     <div class="container">
 
-        <form method="post" role="form" action="{{route('checkout.store')}}">
-@csrf
+        <form method="post" role="form" action="{{ route('checkout.store') }}" >
+            @csrf
     
             <div class="row">
                 <div class="col-lg-8">
@@ -30,19 +30,7 @@
                         <h3 class="title">Billing Details</h3>
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                {{-- <div class="form-group">
-                                    <label>Country <span class="required">*</span></label>
-                                    <div class="select-box">
-                                        <select class="form-control">
-                                            <option value="5">United Arab Emirates</option>
-                                            <option value="1">China</option>
-                                            <option value="2">United Kingdom</option>
-                                            <option value="0">Germany</option>
-                                            <option value="3">France</option>
-                                            <option value="4">Japan</option>
-                                        </select>
-                                    </div>
-                                </div> --}}
+                               
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
@@ -99,12 +87,14 @@
                                 </div>
                             </div>
 
-<p>Session Value: {{json_encode(session('book_date')) }}</p>
+{{-- <p>Session Value: {{json_encode(session('book_date')) }}</p> --}}
 
-               
+                
                         </div>
                     </div>
                 </div>
+
+                
                 
                 
                 <div class="col-lg-4">
@@ -130,10 +120,19 @@
 
                                         @php
                                             
-                                            $subtotal = $room->price * $nights * $book_data['number_of_rooms'];
-                                            $discount = ($room->discount/100) * $subtotal;
-                                            $total_price = $subtotal - $discount;
+                                                    $subtotal = $room->price * $nights * $book_data['number_of_room'];
+                                                    $discount = ($room->discount / 100) * $subtotal;
 
+                                                    $additional_fee_per_person = 50;
+
+                                                    $extra_persons = $book_data['person'] - $room->total_adult;
+
+
+                                                    $additional_fees = ($extra_persons > 0) ? $extra_persons * $additional_fee_per_person : 0;
+
+                                                    $subtotal += $additional_fees;
+
+                                                    $final_total = $subtotal - $discount;
                                         @endphp
                                         
                                         
@@ -143,7 +142,15 @@
                                           </tr>
                                           <tr>
                                                 <td><p>Total Room</p></td>
-                                                <td style="text-align: right"><p>{{$book_data['number_of_rooms']}}</p></td>
+                                                <td style="text-align: right"><p>{{$book_data['number_of_room']}}</p></td>
+                                          </tr>
+                                          <tr>
+                                            <td><p>Pre-Total</p></td>
+                                            <td style="text-align:right"> <p>{{$room->price * $nights}}</p></td>
+                                          </tr>
+                                          <tr>
+                                            <td><p>Additional Charges</p></td>
+                                            <td style="text-align:right"> <p>{{ $book_data['person'] > $room->total_adult ? '' . $additional_fees : '₱0'}}</p></td>
                                           </tr>
                                           <tr>
                                                 <td><p>Subtotal</p></td>
@@ -155,7 +162,7 @@
                                           </tr>
                                           <tr>
                                                 <td><p>Total</p></td>
-                                                <td style="text-align:right"> <p>{{$total_price}}</p></td>
+                                                <td style="text-align:right"> <p>{{$final_total}}</p></td>
                                           </tr>
                                     </table>
       
@@ -163,7 +170,47 @@
                         </div>
                   </section>
                 </div>
-                <div class="col-lg-8 col-md-8">
+
+              
+
+                <div class="col-lg-8">
+                    <div class="billing-details">
+                        <h3 class="title">Guest Details</h3>
+                        
+                        @for ($i = 1; $i <= $book_data['person']; $i++) 
+                        <div class="row mb-3">
+                            <div class="col-lg-8 col-sm-8">
+                                <div class="form-group">
+                                    <label><span class="required">*</span></label>
+                                    <input type="guest" name="guests[{{$i}}][name]" class="form-control" placeholder="Enter guest name">
+                                </div>
+                            </div>
+                
+                            <div class="col-lg-2 col-sm-2">
+                                <div class="form-group">
+                                    <label><span class="required">*</span></label>
+                                    <input type="guest" name="guests[{{$i}}][age]" class="form-control" placeholder="Enter age">
+                                </div>
+                            </div>
+                
+                            <div class="col-lg-2 col-sm-2">
+                                <div class="form-group">
+                                    <label><span class="required">*</span></label>
+                                    <select name="guests[{{$i}}][gender]" class="form-select">
+                                        <option selected disabled>Choose...</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        @endfor
+                
+                    </div>
+                </div>
+
+
+                <div class="col-lg-8 col-md-12">
                     <div class="payment-box">
                         <div class="payment-method">
                             <p>

@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <label>Check in</label>
                                         <div class="input-group">
-<input autocomplete="off"  type="text" required name="check_in" id="check_in"  class="form-control dt_picker" value="{{ old('check_in') ? date('Y-m-d', strtotime(old('check_in'))) : '' }}" >
+<input autocomplete="off" type="text" required name="check_in" id="check_in"  class="form-control dt_picker" value="{{ old('check_in') ? date('Y-m-d', strtotime(old('check_in'))) : '' }}" >
                                             <span class="input-group-addon"></span>
                                         </div>
                                         <i class='bx bxs-calendar'></i>
@@ -77,7 +77,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Numbers of Rooms</label>
-                                        <select class="form-control number_of_rooms" name="number_of_rooms" id="select_room">
+                                        <select class="form-control number_of_room" name="number_of_room" id="select_room">
                                             @for ($i = 1; $i <= 5; $i++)
                                             <option value="0{{$i}}">0{{$i}}</option>
                                             @endfor
@@ -207,31 +207,7 @@
             </div> 
                 </div>
                     </div>
-                    <div class="room-details-review">
-                        <h2>Clients Review and Retting's</h2>
-                        <div class="review-ratting">
-                            <h3>Your retting: </h3>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                            <i class='bx bx-star'></i>
-                        </div>
-                        <form >
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control"  cols="30" rows="8" required data-error="Write your message" placeholder="Write your review here.... "></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12">
-                                    <button type="submit" class="default-btn btn-bg-three">
-                                        Submit Review
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                 
                 </div>
             </div>
         </div>
@@ -264,13 +240,7 @@
                                     <h6><a href="{{route('room.details', $item->id)}}">{{ $item['roomtype']['name'] }}</a></h6>
                                 </h3>
                                 <span>{{ $item->price }} / Per Night </span>
-                                <div class="rating">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
+                         
                                 <p>{{ $item->short_desc }}</p>
                                 <ul>
                                     <li><i class='bx bx-user'></i> {{ $item->room_capacity }} Person</li>
@@ -293,6 +263,7 @@
         </div>
     </div>
 </div>
+
 <!-- Room Details Other End -->
 
 <script>
@@ -311,7 +282,7 @@ $(document).ready(function () {
              getAvaility(check_in, check_out, room_id);
           }
        });
-       $(".number_of_rooms").on('change', function () {
+       $(".number_of_room").on('change', function () {
           var check_out = $("#check_out").val();
           var check_in = $("#check_in").val();
           if(check_in != '' && check_out != ''){
@@ -344,6 +315,7 @@ $(document).ready(function () {
        $(".t_discount").text(discount_price);
        $(".t_g_total").text(sub_total-discount_price);
     }
+    
     $("#bk_form").on('submit', function () {
        var av_room = $("#available_room").val();
        var select_room = $("#select_room").val();
@@ -354,11 +326,13 @@ $(document).ready(function () {
        var number_person = $("#number_person").val();
        var total_adult = $("#total_adult").val();
        if(parseInt(number_person) > parseInt(total_adult)){
-          alert('Sorry, you select maximum number of person');
-          return false;
+          alert('Sorry, you select maximum number of person Additional Charges may be apply');
+
        }
 
     })
+
+    
 </script>
 
 @endsection

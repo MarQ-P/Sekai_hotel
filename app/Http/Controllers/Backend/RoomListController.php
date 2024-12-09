@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Models\Room;
+use App\Models\Guest;
 use App\Models\MultiImage;
 use App\Models\Facility;
 use App\Models\RoomBookedDate;
@@ -96,7 +97,7 @@ class RoomListController extends Controller
         $toDate = Carbon::parse($request['check_in']);
         $fromDate = Carbon::parse($request['check_out']);
         $total_nights = $toDate->diffInDays($fromDate); 
-        
+
         $subtotal = $room->price * $total_nights * $request->number_of_room;
         $discount = ($room->discount/100)*$subtotal;
         $total_price = $subtotal-$discount;
@@ -133,7 +134,16 @@ class RoomListController extends Controller
        $payment->booking_id = $data->id;
        $payment->user_id = Auth::user()->id;
        $payment->payment_method = 'PATH';
-       $payment->transaction_id = '';
+
+       foreach ($request->guests as $guestData) {
+        $guest = new Guest();
+        $guest->booking_id = $data->id; 
+        $guest->name = $guestData['name'];
+        $guest->age = $guestData['age'];
+        $guest->gender = $guestData['gender'];
+        $guest->save();
+    }
+     
        $payment->payment_status = 0;
        $payment->save();
 
@@ -156,5 +166,18 @@ class RoomListController extends Controller
      ); 
      return redirect()->back()->with($notification);  
  }// End Method 
+
+public function DeleteBookingList ($id){
+
+Booking::findOrFail($id)->delete();
+
+$notification = array(
+    'message' => 'Booking Deleted Successfully',
+    'alert-type' => 'success'
+); 
+return redirect()->back()->with($notification);  
+
+
+}
 
 }

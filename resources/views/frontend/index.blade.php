@@ -175,4 +175,19 @@
     </div>
 </div>
 <!-- Blog Area End --> --}}
+
+
+<script>
+    // Show/hide scroll button based on scroll position
+    window.addEventListener('scroll', function() {
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.remove('hidden');
+        } else {
+            scrollToTopBtn.classList.add('hidden');
+        }
+    });
+</script>
+
+
 @endsection

@@ -33,13 +33,7 @@ $rooms =  App\Models\Room::latest()->limit(4)->get();
                                      <a href="{{route('room.details', $room->id)}}">{{$room['roomtype']['name']}}</a>
                                 </h3>
                                 <span>{{$room->price}} / Per Night </span>
-                                <div class="rating">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
+                           
                                 <p>{{$room->short_desc}}</p>
                                 <ul>
                                     <li><i class='bx bx-user'></i>{{$room->room_capacity}}</li>
@@ -51,8 +45,8 @@ $rooms =  App\Models\Room::latest()->limit(4)->get();
                                     <li><i class='bx bxs-hotel'></i> {{$room->bed_style}}</li>
                                 </ul>
                                 
-                                <a href="room-details.html" class="book-more-btn">
-                                    Book Now
+                                <a class="book-more-btn" id="scrollToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                                    Check Availability
                                 </a>
                             </div>
                         </div>

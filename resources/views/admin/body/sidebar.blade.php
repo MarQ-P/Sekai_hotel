@@ -20,22 +20,6 @@
 					</a>
 				</li>
 
-	
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-category"></i>
-						</div>
-						<div class="menu-title">Application</div>
-					</a>
-					<ul>
-						<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Email</a>
-						</li>
-						<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
-						</li>
-					
-					</ul>
-				</li>
-
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-category"></i>
@@ -112,18 +96,104 @@
 						
 					</ul>
 				</li>
-							
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						</div>
+						<div class="menu-title">Setting</div>
+					</a>
+					<ul>
+						<li> <a href="{{route('smtp.setting')}}"><i class='bx bx-radio-circle'></i>SMTP Setting</a>
+						</li>
+						
+					</ul>
+				</li>
+
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						</div>
+						<div class="menu-title">Tesimonial</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('all.testimonial') }}"><i class='bx bx-radio-circle'></i>All Testimonial</a>
+						</li>
+						<li> <a href="{{ route('add.testimonial') }}"><i class='bx bx-radio-circle'></i>Add Testimonial</a>
+						</li>
+						
+						 
+					</ul>
+				</li>
+
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						</div>
+						<div class="menu-title">Booking Report</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('booking.report') }}"><i class='bx bx-radio-circle'></i>Booking Report</a>
+						</li>
+					</ul>
+				</li>
+
 				</li>
 	
 				<li class="menu-label">Others</li>
 
+	
+				<li class="menu-label">Role & Permission </li>
+
 				<li>
-					<a href="https://themeforest.net/user/codervent" target="_blank">
+					<a href="{{route('all.permission')}}" >
 						<div class="parent-icon"><i class="bx bx-support"></i>
 						</div>
-						<div class="menu-title">Support</div>
+						<div class="menu-title">All permission</div>
 					</a>
 				</li>
+				<li>
+					<a href="{{ route('all.roles') }}" >
+						<div class="parent-icon"><i class="bx bx-support"></i>
+						</div>
+						<div class="menu-title">All Roles</div>
+					</a>
+				</li>
+
+				<li>
+					<a href="{{ route('add.roles.permission') }}" >
+						<div class="parent-icon"><i class="bx bx-support"></i>
+						</div>
+						<div class="menu-title">Role In Permission</div>
+					</a>
+				</li>
+
+				<li>
+					<a href="{{ route('all.roles.permission') }}" >
+						<div class="parent-icon"><i class="bx bx-support"></i>
+						</div>
+						<div class="menu-title">All Role In Permission</div>
+					</a>
+				</li>
+
+				<li>
+					<a href="{{ route('all.admin') }}" >
+						<div class="parent-icon"><i class="bx bx-support"></i>
+						</div>
+						<div class="menu-title">All Admin</div>
+					</a>
+				</li>
+
+				<li>
+					<a href="{{ route('add.admin') }}" >
+						<div class="parent-icon"><i class="bx bx-support"></i>
+						</div>
+						<div class="menu-title">Add Admin</div>
+					</a>
+				</li>
+
 			</ul>
 			<!--end navigation-->
 		</div>

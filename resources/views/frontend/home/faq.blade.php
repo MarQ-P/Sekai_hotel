@@ -26,35 +26,9 @@
                                 </div>
                             </li>
 
-                            <li class="accordion-item">
-                                <a class="accordion-title" href="javascript:void(0)">
-                                    <i class='bx bx-plus'></i>
-                                    How I Will Be Able to Add on the Admin Portal? 
-                                </a>
 
-                                <div class="accordion-content">
-                                    <p> 
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at diam leo. Mauris a ante placerat,
-                                        dignissim orci eget, viverra ante. Mauris ornare pellentesque augue. Curabitur leo nibh, ultrices 
-                                        vel ultricies eu, vulputate at felis.
-                                    </p>
-                                </div>
-                            </li>
 
-                            <li class="accordion-item">
-                                <a class="accordion-title" href="javascript:void(0)">
-                                    <i class='bx bx-plus'></i>
-                                    What are the Benefits of These Agencies?
-                                </a>
-
-                                <div class="accordion-content">
-                                    <p> 
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at diam leo. Mauris a ante placerat,
-                                        dignissim orci eget, viverra ante. Mauris ornare pellentesque augue. Curabitur leo nibh, ultrices 
-                                        vel ultricies eu, vulputate at felis.
-                                    </p>
-                                </div>
-                            </li>
+                    
 
                             <li class="accordion-item">
                                 <a class="accordion-title active" href="javascript:void(0)">

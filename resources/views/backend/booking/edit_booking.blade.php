@@ -110,6 +110,7 @@
                                         <tr>
                                             <th>Room Type</th>
                                             <th>Total Room</th>
+                                            <th>Persons</th>
                                             <th>Price</th>
                                             <th>Check in</th>
                                             <th>Check out</th>
@@ -126,6 +127,7 @@
                                             <tr>
                                                 <td>{{$editData->room->roomtype->name}}</td>
                                                 <td>{{$editData->number_of_room}}</td>
+                                                <td>{{$editData->person}}</td>
                                                 <td>P{{$editData->actual_price}}</td>
                                                 <td><h6><span class="badge bg-primary ">{{$editData->check_in}}</span></h6></td>
                                                 <td><h6><span class="badge bg-warning text-dark ">{{$editData->check_out}}</span></h6></td>
@@ -288,6 +290,44 @@
                     </div>
                     {{-- end card radius --}}
                 </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="card radius-10 w-100">
+                     <div class="card-header">
+                         <div class="d-flex align-items-center">
+                             <div>
+                                 <h6 class="mb-0">Guest </h6>
+                             </div>
+                     
+                         </div>
+                     </div>
+                        <div class="card-body">
+                            <table class="table align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+
+                                    </tr>
+                                </thead>
+                                    <tbody>       
+                                        @foreach ($editData->guests as $key => $guest)
+                                        <tr>
+                                            <td>{{$key+1}}</td>
+                                            <td>{{$guest->name}}</td>
+                                            <td>{{$guest->age}}</td>
+                                            <td>{{$guest->gender}}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                            </table>
+                         
+                         </div>
+                     </div>
+                     {{-- end card radius --}}
+                 </div>
 
 
 				</div><!--end row-->

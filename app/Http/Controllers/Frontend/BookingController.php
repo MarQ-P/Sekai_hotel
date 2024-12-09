@@ -16,16 +16,22 @@ use App\Models\RoomBookedDate;
 use App\Models\BookingRoomList;
 use App\Models\Booking;
 use App\Models\Payment;
+use App\Models\Guest;
 use App\Models\RoomNumber;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 USE App\Mail\BookConfirm;
-
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\User;
+use App\Notifications\BookingComplete;
+use Illuminate\support\Facades\Notification;
 
 class BookingController extends Controller
 {
     
+    use ValidatesRequests;
+
 public function Checkout(){
 
     if(Session::has('book_date')){
@@ -46,7 +52,7 @@ return view('frontend.checkout.checkout', compact('book_data', 'room', 'nights')
             'alert-type' => 'error'
         );
     
-        return redirect()->back()->with($notification);
+        return redirect('/')->with($notification); 
 
     }//end else
 
@@ -94,7 +100,10 @@ return redirect()->route('checkout');
 
 public function checkoutStore(Request $request){
 
-        $validateData = $request->validate([
+    $user = User::where('role', 'admin')->get();
+
+    $this->validate($request,[
+
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
@@ -112,9 +121,20 @@ public function checkoutStore(Request $request){
         $total_nights = $toDate->diffInDays($fromDate);
     
         $room = Room::find($book_data['room_id']);
-        $subtotal = $room->price * $total_nights * $book_data['number_of_room'];
+         $subtotal = $room->price * $total_nights * $book_data['number_of_room'];
+
+        $additional_fee_per_person = 50;
+
+        $extra_persons = max(0, $book_data['person'] - $room->total_adult);
+
+        $additional_fees = $extra_persons * $additional_fee_per_person;
+
+        $subtotal += $additional_fees;
+
         $discount = ($room->discount / 100) * $subtotal;
+
         $total_price = $subtotal - $discount;
+
         $code = rand(000000000, 999999999);
     
         $data = new Booking();
@@ -145,10 +165,19 @@ public function checkoutStore(Request $request){
         $payment->booking_id = $data->id;
         $payment->user_id = Auth::user()->id;
         $payment->payment_method = $request->payment_method;
-        $payment->transaction_id = '';
         $payment->payment_status = 0;
         $payment->save();
-    
+
+        foreach ($request->guests as $guestData) {
+            $guest = new Guest();
+            $guest->booking_id = $data->id; 
+            $guest->name = $guestData['name'];
+            $guest->age = $guestData['age'];
+            $guest->gender = $guestData['gender'];
+            $guest->save();
+        }
+
+        
         $sdate = date('Y-m-d', strtotime($book_data['check_in']));
         $edate = date('Y-m-d', strtotime($book_data['check_out']));
         $eldate = Carbon::create($edate);
@@ -167,6 +196,10 @@ public function checkoutStore(Request $request){
             'message' => 'Booking Added Successfully',
             'alert-type' => 'success'
         );
+
+
+        Notification::send($user , new BookingComplete($request->name));
+
         return redirect('/')->with($notification);
     }
 
@@ -175,17 +208,22 @@ public function checkoutStore(Request $request){
 // back end
 /////////////////////////////////////////////////////////////////////////////////////////
 
-public function BookingList(){
+public function BookingList()
+{
+    // Fetch bookings along with payment relationship
+    $bookingData = Booking::with('payment')->orderBy('id', 'desc')->get();
 
-    $bookingData = Booking::with(['payment'])->orderBy('id', 'desc')->get();
-return view('backend.booking.booking_list', compact('bookingData'));
-
+    // Pass the data to the view
+    return view('backend.booking.booking_list', compact('bookingData'));
 }
 
 public function EditBooking( $id){
 
-$editData = Booking::with('room', 'payment')->find($id);
-return view('backend.booking.edit_booking', compact('editData'));
+$editData = Booking::with('room', 'payment', 'guests')->find($id);
+
+$guests = Guest::where('booking_id', $editData->id)->get();
+
+return view('backend.booking.edit_booking', compact('editData', 'guests'));
 
 
 }//end method
@@ -367,9 +405,17 @@ public function UserInvoice($id){
     
     return $pdf->download('invoice.pdf');
 
+}//end methid
+
+// public function MarkAsRead(Request $request , $notificationId){
+//     $user = Auth::user();
+//     $notification = $user->notifications()->where('id',$notificationId)->first();
+//     if ($notification) {
+//         $notification->markAsRead();
+//     }
+// return response()->json(['count' => $user->unreadNotifications()->count()]);
+//  }// End Method 
+
 }
-
-
-}//end method
 
 

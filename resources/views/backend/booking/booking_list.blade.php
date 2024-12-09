@@ -15,7 +15,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.team') }}" class="btn btn-primary px-5">Add Booking </a>
+                <a href="{{ route('add.room.list') }}" class="btn btn-primary px-5">Add Booking </a>
                 
             </div>
         </div>
@@ -55,11 +55,13 @@
                             <td><span class="badge bg-warning text-dark">{{$item->check_out}}</span></td>
                             <td>{{$item->number_of_room}}</td>
                             <td>{{$item->person}}</td>
-                            <td> 
-                                @if($item->payment_status == 1)
-                                <span class="text-success">Complete</span>
-                                @else
-                                <span class="text-danger">Pending</span>
+                            <td>
+                                @if ($item->payment)
+                                    @if ($item->payment->payment_status == 1)
+                                        <span class="badge bg-success">Complete</span>
+                                    @else
+                                        <span class="badge bg-danger">Pending</span>
+                                    @endif
                                 @endif
                             </td>
                             <td>
@@ -70,7 +72,7 @@
                                 @endif
                            </td>
                             <td>
-    <a href="{{ route('delete.team',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
+    <a href="{{ route('delete.booking.list',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
                             </td>
                         </tr>
                         @endforeach 

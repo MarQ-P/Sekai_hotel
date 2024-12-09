@@ -12,6 +12,10 @@ use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Frontend\FrontendRoomController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Backend\RoomListController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\RoleController;
 
 
 
@@ -123,19 +127,85 @@ Route::controller(BookingController::class)->group(function(){
 Route::controller(RoomListController::class)->group(function(){
 
     Route::get('/view/room/list', 'ViewRoomList')->name('view.room.list');
-    
+
     Route::get('/Add/room/list', 'AddRoomList')->name('add.room.list');
+    //bookng.list.blade.php
+    Route::get('/delete/booking/list/{id}', 'DeleteBookingList')->name('delete.booking.list');
+
     //add_roomlist
     Route::post('/store/roomlist', 'StoreRoomList')->name('store.roomlist'); 
 
 
 });//end 
 
-});//End group middleware
+
+//Admin Room List
+Route::controller(SettingController::class)->group(function(){
+
+    //sidebar hohaaa hahaha
+    Route::get('/smtp/room/list', 'SmtpSetting')->name('smtp.setting');
+    Route::post('/smtp/update', 'SmtpUpdate')->name('smtp.update');
+
+
+});//end 
+
+/// Booking Report All Route 
+Route::controller(ReportController::class)->group(function(){ 
+    Route::get('/booking/report/', 'BookingReport')->name('booking.report');
+    Route::post('/search-by-date', 'SearchByDate')->name('search-by-date');
+     
+});
+//permisioon all routee
+Route::controller(RoleController::class)->group(function(){
+
+    Route::get('/all/permission', 'AllPermission')->name('all.permission');
+    Route::get('/add/permission', 'AddPermission')->name('add.permission');
+    Route::post('/store/permission', 'StorePermission')->name('store.permission');
+
+    Route::get('/edit/permission/{id}', 'EditPermission')->name('edit.permission');
+    Route::post('/update/permission', 'UpdatePermission')->name('update.permission');
+    Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
+
+      
+});
+//role all routee
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/all/roles', 'AllRoles')->name('all.roles');
+    Route::get('/add/roles', 'AddRoles')->name('add.roles');
+    Route::post('/store/roles', 'StoreRoles')->name('store.roles');
+
+    // roles//
+    Route::get('/edit/roles/{id}', 'EditRoles')->name('edit.roles');
+    Route::post('/update/roles', 'UpdateRoles')->name('update.roles');
+    Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
+
+    //add_roles_permission
+    Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
+    Route::post('/role/permission/store', 'RolePermissionStore')->name('role.permission.store');
+    Route::get('/all/roles/permission', 'AllRolesPermission')->name('all.roles.permission');
+
+    //edit_roles_permission
+    Route::get('/admin/edit/roles/{id}', 'AdminEditRoles')->name('admin.edit.roles');
+    Route::post('/admin/roles/update/{id}', 'AdminRolesUpdate')->name('admin.roles.update');
+    Route::get('/admin/delete/roles/{id}', 'AdminDeleteRoles')->name('admin.delete.roles');
+ 
+});
+
+Route::controller(AdminController::class)->group(function(){
+    Route::get('/all/admin', 'AllAdmin')->name('all.admin'); 
+    Route::get('/add/admin', 'AddAdmin')->name('add.admin');
+    Route::post('/store/admin', 'StoreAdmin')->name('store.admin');
+    Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
+    Route::post('/update/admin/{id}', 'UpdateAdmin')->name('update.admin');
+    Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
+});
+
+});//End admin group middleware
 
 
 Route::controller(FrontendRoomController::class)->group(function(){
 
+    Route::get('/rooms/', 'AllRoomFrontendRoomList')->name('f_end_room.all');
     Route::get('/rooms/', 'AllRoomFrontendRoomList')->name('f_end_room.all');
     Route::get('/room/details/{id}', 'RoomDetailsPage')->name('room.details');
     Route::get('/bookings/', 'BookingSearch')->name('booking.search');
@@ -171,14 +241,28 @@ Route::middleware(['auth' ])->group(function(){
         /////user booking routeeeeee
         Route::get('/user/booking/', 'UserBooking')->name('user.booking');
         Route::get('/user/invoice/{id}/', 'UserInvoice')->name('user.invoice');
-
-
-
-        
-
     
     });//End bookingCONTROLLER middleware
 
 });//End auth middleware
+
+//testimonialk
+Route::controller(TestimonialController::class)->group(function(){
+    //backend.testimonial.all_testimonial
+    Route::get('/all/testimonial', 'AllTestimonial')->name('all.testimonial'); 
+    Route::get('/add/testimonial', 'AddTestimonial')->name('add.testimonial'); 
+    Route::post('/store/testimonial', 'StoreTestimonial')->name('testimonial.store'); 
+    Route::get('/edit/testimonial/{id}', 'EditTestimonial')->name('edit.testimonial');
+    Route::post('/update/testimonial', 'UpdateTestimonial')->name('testimonial.update'); 
+    Route::get('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
+      
+});
+
+Route::controller(BookingController::class)->group(function(){
+ 
+    Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
+   
+ 
+});
 
 

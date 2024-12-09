@@ -25,10 +25,15 @@ class Booking extends Model
         return $this->hasOne(Payment::class, 'booking_id', 'id');
     }
     
+    public function guests(){
+        return $this->hasMany(Guest::class, 'booking_id');
+    }
 
     public function room(){
         return $this->belongsTo(Room::class, 'rooms_id', 'id');
     }
+
+    
 
 
 }

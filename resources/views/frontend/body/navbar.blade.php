@@ -28,45 +28,14 @@
                             <a href="about.html" class="nav-link">
                                 About
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                               Restaurant 
-                            </a>
-                        
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                               Recreation 
-                            </a>
-                          
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                Blog 
-                            </a>
-                           
-                        </li>
+                 
     @php
         $room = App\Models\Room::latest()->get();
     @endphp
                         <li class="nav-item">
                             <a href="{{ route('f_end_room.all') }}" class="nav-link">
                                 All Rooms
-                                <i class='bx bx-chevron-down'></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach ($room  as $item) 
-                                <li class="nav-item">
-                                    <a href="room.html" class="nav-link">
-                                        {{ $item['roomtype']['name'] }}
-                                    </a>
-                                </li>
-                                @endforeach
-                                
-                            </ul>
+                            </a>       
                         </li>
 
                         <li class="nav-item">
