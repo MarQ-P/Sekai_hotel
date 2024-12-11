@@ -32,7 +32,7 @@ class BookingController extends Controller
     
     use ValidatesRequests;
 
-public function Checkout(){
+public function Checkout($id){
 
     if(Session::has('book_date')){
         $book_data = Session::get('book_date');
@@ -42,7 +42,7 @@ public function Checkout(){
         $toDate = Carbon::parse($book_data['check_out']);
         $nights = $fromDate->diffInDays($toDate);
       
-return view('frontend.checkout.checkout', compact('book_data', 'room', 'nights'));
+return view('frontend.checkout.checkout', compact('book_data', 'room', 'nights', 'id'));
 
     }else{
 
@@ -92,13 +92,13 @@ $data['room_id'] = $request->room_id;
 
 Session::put('book_date', $data);
 
-return redirect()->route('checkout');
+return redirect()->route('checkout', ['id' => $request->room_id]);
 
 
 
 }//end method
 
-public function checkoutStore(Request $request){
+public function checkoutStore(Request $request, $id){
 
     $user = User::where('role', 'admin')->get();
 
@@ -189,6 +189,17 @@ public function checkoutStore(Request $request){
             $booked_dates->book_date = date('Y-m-d', strtotime($period));
             $booked_dates->save();
         }
+
+
+        $emailData = [
+            'check_in' => $data->check_in,
+            'check_out' => $data->check_out,
+            'name' => $data->name,
+            'email' => $data->email,
+            'phone' => $data->phone,
+        ];
+        
+        Mail::to($data->email)->send(new BookConfirm($emailData));
     
         Session::forget('book_date');
     
@@ -242,11 +253,11 @@ $sendmail = Booking::find($id);
 
 $data = [
 
-    'check_in' => $sendmail-> check_in,
-    'check_out' => $sendmail-> check_out,
-    'name' => $sendmail-> name,
-    'email' => $sendmail-> email,
-    'phone' => $sendmail-> phone,
+    'check_in' => $sendmail->check_in,
+    'check_out' => $sendmail->check_out,
+    'name' => $sendmail->name,
+    'email' => $sendmail->email,
+    'phone' => $sendmail->phone,
 
 ];
 
@@ -406,6 +417,14 @@ public function UserInvoice($id){
     return $pdf->download('invoice.pdf');
 
 }//end methid
+
+public function ConfirmBooking($id) {
+
+    $booking = Booking::find($id);
+
+
+    return view('mail.booking_mail', compact('booking'));
+}
 
 // public function MarkAsRead(Request $request , $notificationId){
 //     $user = Auth::user();

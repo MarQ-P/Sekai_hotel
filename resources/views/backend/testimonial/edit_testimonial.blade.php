@@ -25,7 +25,9 @@
         <div class="card">
             <form id="myForm" action="{{ route('testimonial.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                
                 <input type="hidden" name="id" value="{{ $testimonial->id }}">
+
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-sm-3">

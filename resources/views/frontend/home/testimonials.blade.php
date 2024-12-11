@@ -4,8 +4,7 @@
 
 @endphp
 
-<div class="testimonials-area-three pb-70">
-    <div class="container">
+
         <div class="section-title text-center">
             
             <span class="sp-color">TESTIMONIAL</span>

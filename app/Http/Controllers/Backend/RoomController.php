@@ -223,21 +223,6 @@ public function DeleteRoom(Request $request, $id){
 
 $room = Room::find( $id );
 
-if(file_exists('upload/roomImg/'.$room->image) AND ! empty($room->image)){
-@unlink('upload/roomImg/'. $room->image);
-}
-
-$multi_image = MultiImage::where('rooms_id', $room->id)->get()->toArray() ;
-
-if(!empty($multi_image)){
-    foreach($multi_image as $images){
-        if(!empty($images)){
-@unlink('upload/roomImg/multiImg'. $images['multi_img']);
-        }
-}
-
-}
-
 RoomType::where('id', $room->roomtype_id)->delete();
 MultiImage::where('rooms_id', $room->$id)->delete();
 Facility::where('rooms_id', $room->id)->delete();
@@ -253,5 +238,47 @@ $notification = array(
 return redirect()->back()->with($notification);
 
 }//end method
+
+public function ArchieveRoom(){
+
+    $room = Room::onlyTrashed()->latest()->get();
+    return view('backend.roomlist.archieve_roomtype', compact('room'));
+
+} //End Method
+
+// public function ForceDeleteRoom(Request $request, $id){
+
+//     $room = Room::find( $id );
+    
+//     if(file_exists('upload/roomImg/'.$room->image) AND ! empty($room->image)){
+//     @unlink('upload/roomImg/'. $room->image);
+//     }
+    
+//     $multi_image = MultiImage::where('rooms_id', $room->id)->get()->toArray() ;
+    
+//     if(!empty($multi_image)){
+//         foreach($multi_image as $images){
+//             if(!empty($images)){
+//     @unlink('upload/roomImg/multiImg'. $images['multi_img']);
+//             }
+//     }
+    
+//     }
+    
+//     RoomType::where('id', $room->roomtype_id)->delete();
+//     MultiImage::where('rooms_id', $room->$id)->delete();
+//     Facility::where('rooms_id', $room->id)->delete();
+//     RoomNumber::where('rooms_id', $room->$id)->delete();
+//     $room->delete();
+    
+//     $notification = array(
+        
+//         'message' => 'Room Deleted Successfully!',
+//         'alert-type' => 'success'
+//     );
+    
+//     return redirect()->back()->with($notification);
+    
+//     }//end method
 
 }

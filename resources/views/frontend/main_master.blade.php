@@ -41,22 +41,7 @@
 
         <title>Sekai Hotel</title>
     </head>
-    <body>
-
-        <!-- PreLoader Start -->
-        {{-- <div class="preloader">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="sk-cube-area">
-                        <div class="sk-cube1 sk-cube"></div>
-                        <div class="sk-cube2 sk-cube"></div>
-                        <div class="sk-cube4 sk-cube"></div>
-                        <div class="sk-cube3 sk-cube"></div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <!-- PreLoader End -->
+    <body style="overflow-x: hidden;">
 
         <!-- Top Header Start -->
         @include('frontend.body.header')

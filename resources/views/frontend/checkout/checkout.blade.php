@@ -21,9 +21,10 @@
 <section class="checkout-area pt-100 pb-70">
     <div class="container">
 
-        <form method="post" role="form" action="{{ route('checkout.store') }}" >
+        <form method="post" role="form" action="{{ route('checkout.store', $id) }}" >
             @csrf
     
+
             <div class="row">
                 <div class="col-lg-8">
                     <div class="billing-details">

@@ -120,8 +120,6 @@ return redirect()->route('all.team')->with($notification);
 public function DeleteTeam($team_id){
 
     $item = Team::findOrFail($team_id);
-    $img = $item->image;
-    unlink($img);
 
     Team::findOrFail($team_id)->delete();
 
@@ -133,6 +131,44 @@ public function DeleteTeam($team_id){
     
     return redirect()->back()->with($notification); 
 
+}
+
+public function ArchieveTeam(){
+
+    $team = Team::onlyTrashed()->latest()->get();
+    return view('backend.team.archieve_team', compact('team'));
+
+} //End Method
+
+
+public function RestoreTeam($team_id)
+{
+    Team::withTrashed()->findOrFail($team_id)->restore();
+
+    $notification = array(
+        'message' => 'Team Restored Successfully',
+        'alert-type' => 'success',
+    );
+
+    return redirect()->back()->with($notification);
+}
+
+public function ForceDeleteTeam($team_id)
+{
+    $item = Team::withTrashed()->findOrFail($team_id);
+
+    if ($item->image && file_exists($item->image)) {
+        unlink($item->image);
+    }
+
+    $item->forceDelete();
+
+    $notification = array(
+        'message' => 'Team Permanently Deleted',
+        'alert-type' => 'success',
+    );
+
+    return redirect()->back()->with($notification);
 }
 
 }

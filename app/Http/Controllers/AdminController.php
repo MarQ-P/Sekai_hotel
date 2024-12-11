@@ -199,4 +199,35 @@ public function DeleteAdmin($id){
     return redirect()->back()->with($notification); 
 }// End Method 
 
+public function ArchieveAdmin(){
+
+    $user = User::onlyTrashed()->latest()->get();
+    return view('backend.pages.admin.archieve_admin', compact('user'));
+
+}
+
+public function RestoreAdmin($id)
+{
+    User::withTrashed()->findOrFail($id)->restore();
+
+    $notification = array(
+        'message' => 'Testimonial Restored Successfully',
+        'alert-type' => 'success',
+    );
+
+    return redirect()->back()->with($notification);
+}
+
+public function ForceDeleteAdmin($id){
+    $item = User::findOrFail($id);
+    $img = $item->image;
+    unlink($img);
+    User::findOrFail($id)->delete();
+    $notification = array(
+        'message' => 'Testimonial Deleted Successfully',
+        'alert-type' => 'success'
+    );
+    return redirect()->back()->with($notification);
+ }   // End Method 
+
 }

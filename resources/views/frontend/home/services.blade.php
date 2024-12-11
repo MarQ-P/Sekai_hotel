@@ -10,12 +10,12 @@
                 <div class="service-item-two">
                     <i class="flaticon-hotel"></i>
                     <div class="content">
-                        <h3><a href="service-details.html">Hotel Room Reservation into the Desire Places</a></h3>
+                        <h3><a >Hotel Room Reservation into the Desire Places</a></h3>
                         <p>
                             You can easily reserve a hotel room in a good place as you want. This will be able to make good feelings. 
                             This will be really effective for us and all & all of the customers & clients.
                         </p>
-                        <a href="service-details.html" class="read-btn">Read More</a>
+                        <a class="read-btn">Read More</a>
                     </div>
                 </div>
             </div>
@@ -24,12 +24,12 @@
                 <div class="service-item-two">
                     <i class="flaticon-resort"></i>
                     <div class="content">
-                        <h3><a href="service-details.html">Resort Reservation Into the Good and Suitable Place</a></h3>
+                        <h3><a href="">Resort Reservation Into the Good and Suitable Place</a></h3>
                         <p>
                             You can easily reserve a hotel room in a good place as you want. This will be able to make good feelings. 
                             This will be really effective for us and all & all of the customers & clients.
                         </p>
-                        <a href="service-details.html" class="read-btn">Read More</a>
+                        <a class="read-btn">Read More</a>
                     </div>
                 </div>
             </div>
@@ -38,12 +38,11 @@
                 <div class="service-item-two">
                     <i class="flaticon-buildings"></i>
                     <div class="content">
-                        <h3><a href="service-details.html">Weeding Hall Reservation in the Suitable and Good Place</a></h3>
+                        <h3><a > Hotel Room Reservation in the best Locations</a></h3>
                         <p>
-                            You can easily reserve a hotel room in a good place as you want. This will be able to make good feelings. 
-                            This will be really effective for us and all & all of the customers & clients.
+                            Easily book hotel rooms in your desired locations with just a few clicks. Our platform offers awide range of options to suit your preferences and budget. Enjoy seamless booking, secure transactions, and exceptional customer service to enhance your travel experience.
                         </p>
-                        <a href="service-details.html" class="read-btn">Read More</a>
+                        <a class="read-btn">Read More</a>
                     </div>
                 </div>
             </div>
@@ -52,12 +51,12 @@
                 <div class="service-item-two">
                     <i class="flaticon-businessmen"></i>
                     <div class="content">
-                        <h3><a href="service-details.html">Conference Room Reservation in the Suitable and Good Place</a></h3>
+                        <h3><a >Conference Room Reservation in the Suitable and Good Place</a></h3>
                         <p>
                             You can easily reserve a hotel room in a good place as you want. This will be able to make good feelings. 
                             This will be really effective for us and all & all of the customers & clients.
                         </p>
-                        <a href="service-details.html" class="read-btn">Read More</a>
+                        <a class="read-btn">Read More</a>
                     </div>
                 </div>
             </div>

@@ -204,7 +204,8 @@
                         <select name="status" id="input7" class="form-select">
                             <option selected="">Select Status...</option>
                             <option value="0" {{$editData->status == 0  ? 'selected':''}} >Pending </option>
-                            <option value="1" {{$editData->status == 1  ? 'selected':''}} >Complete </option>
+                            <option value="1" {{$editData->status == 1  ? 'selected':''}} >Confirmed </option>
+                            <option value="1" {{$editData->status == 2  ? 'selected':''}} >Completed </option>
                         </select>
                                         </div>
 

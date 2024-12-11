@@ -52,10 +52,12 @@
                             <td>{{$all_team_data->name}}</td>
                             <td>{{$all_team_data->position}}</td>
                             <td>
-                                
+                                @if(Auth::user()->can('team.edit'))
                                 <a href="{{route('edit.team',$all_team_data->team_id)}}" class="btn btn-warning px-3 radius-30" >Edit</a>
+                                @endif
+                                @if(Auth::user()->can('team.delete'))
                                 <a href="{{route('delete.team',$all_team_data->team_id)}}" class="btn btn-danger px-3 radius-30" id="confirmation" >Delete</a>
-
+                                @endif
 
                             </td>
                         </tr>

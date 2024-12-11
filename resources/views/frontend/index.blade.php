@@ -5,7 +5,7 @@
  <div class="banner-area" style="height: 480px;">
     <div class="container">
         <div class="banner-content">
-            <h1>Discover a Hotel & Resort to Book a Suitable Room</h1>
+            <h1>Book Your Serene Escape at Sekai Hotel Today!</h1>
             
              
         </div>
@@ -187,6 +187,8 @@
             scrollToTopBtn.classList.add('hidden');
         }
     });
+
+    
 </script>
 
 

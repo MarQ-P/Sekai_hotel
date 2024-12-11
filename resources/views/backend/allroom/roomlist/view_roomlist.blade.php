@@ -47,13 +47,13 @@
                             <td>{{ $item->room_no }}</td>
                             <td>
                             @if ($item->booking_id != '')
-                                @if ($item->booking_stauts == 1)
-                                <span class="badge bg-danger">Booked</span>
-                                 @else   
+                                @if ($item->booking_status == 1)
+                                <span class="badge bg-danger">Confirmed</span>
+                                 @elseif ($item->booking_status == 0)
                                  <span class="badge bg-warning">Pending</span>
-                                @endif 
-                                @else
-                                <span class="badge bg-success">Available</span>
+                                 @elseif ($item->booking_status == 2)
+                                <span class="badge bg-success">Completed</span>
+                                @endif  
                             @endif    
                             </td>
                             <td>

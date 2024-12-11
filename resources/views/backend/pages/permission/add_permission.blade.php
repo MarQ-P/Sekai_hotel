@@ -44,11 +44,9 @@
             <option value="Manage Room">Manage Room</option>
             <option value="Booking">Booking</option>
             <option value="RoomList">RoomList</option>
-            <option value="Setting">Setting</option>
             <option value="Tesimonial">Tesimonial</option>
-            <option value="Hotel Gallery ">Hotel Gallery </option>
-            <option value="Contact Message ">Contact Message </option>
             <option value="Role and Permission">Role and Permission </option>
+            <option value="Role and Permission">Booking Report</option>
         </select>
          
     </div>

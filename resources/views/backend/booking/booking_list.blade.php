@@ -66,7 +66,9 @@
                             </td>
                             <td>
                                 @if($item->status == 1)
-                                <span class="text-success">Active</span>
+                                <span class="text-success">Confirmed</span>
+                                @elseif($item->status == 2)
+                                <span class="text-success">Completed</span>
                                 @else
                                 <span class="text-danger">Pending</span>
                                 @endif

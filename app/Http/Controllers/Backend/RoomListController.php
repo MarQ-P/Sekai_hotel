@@ -180,4 +180,11 @@ return redirect()->back()->with($notification);
 
 }
 
+public function ArchieveBookingList(){
+
+    $booking = Booking::onlyTrashed()->latest()->get();
+    return view('backend.booking.archieve_booking', compact('booking'));
+
+}
+
 }

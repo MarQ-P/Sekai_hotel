@@ -72,6 +72,9 @@ Route::controller(TeamController::class)->group(function(){
     Route::get('/edit/team/{team_id}', 'EditTeam')->name('edit.team');
     Route::post('/team/update', 'UpdateTeam')->name('team.update');
     Route::get('/delete/team/{team_id}', 'DeleteTeam')->name('delete.team');
+    Route::get('/archieve/team', 'ArchieveTeam')->name('archieve.team');
+    Route::get('/restore/team/{team_id}', 'RestoreTeam')->name('restore.team');
+    Route::get('/force-delete/team/{team_id}', 'ForceDeleteTeam')->name('forceDelete.team');
 
 
 });//end team middleware
@@ -102,12 +105,16 @@ Route::controller(RoomController::class)->group(function(){
     Route::get('/Edit/room/{id}/', 'EditRoom')->name('edit.room');
     Route::get('/Delete/room/{id}/', 'DeleteRoom')->name('delete.room');
     Route::post('/Update/room/{id}/', 'UpdateRoom')->name('update.room');
+    Route::get('/archieve/room', 'ArchieveRoom')->name('archieve.room');
+    Route::get('/restore/room/{id}', 'RestoreRoom')->name('restore.room');
+    Route::get('/force-delete/room/{id}', 'ForceDeleteRoom')->name('forceDelete.room');
     Route::get('/multi/images/delete/{id}/', 'MultiImagesDelete')->name('multi.image.delete');
 
     Route::post('/store/room/number/{id}/', 'StoreRoomNUmber')->name('store.roomNumber');
     Route::get('/edit/room/number/{id}/', 'EditRoomNUmber')->name('edit.roomNumber');
     Route::post('/update/room/number/{id}/', 'UpdateRoomNUmber')->name('update.roomNumber');
     Route::get('/delete/room/number/{id}/', 'DeleteRoomNUmber')->name('delete.roomNumber');
+    
  
 
 });//end 
@@ -118,8 +125,8 @@ Route::controller(BookingController::class)->group(function(){
     Route::get('/booking/list', 'BookingList')->name('booking.list');
     Route::get('/edit/booking/{id}', 'EditBooking')->name('edit.booking');
     Route::get('/download/invoice/{id}', 'DownloadInvoice')->name('download.invoice');
-
-
+    
+    //email confirm booking
 });//end 
 
 
@@ -131,10 +138,13 @@ Route::controller(RoomListController::class)->group(function(){
     Route::get('/Add/room/list', 'AddRoomList')->name('add.room.list');
     //bookng.list.blade.php
     Route::get('/delete/booking/list/{id}', 'DeleteBookingList')->name('delete.booking.list');
-
+    
     //add_roomlist
     Route::post('/store/roomlist', 'StoreRoomList')->name('store.roomlist'); 
 
+    Route::get('/archieve/bookinglist/', 'ArchieveBookingList')->name('archieve.bookinglist');
+    Route::get('/restore/bookinglist/{id}', 'RestoreBookingList')->name('restore.bookinglist');
+    Route::get('/forcedelete/bookinglist/{id}', 'ForceDeleteBookingListl')->name('forcedelete.bookinglist');
 
 });//end 
 
@@ -198,6 +208,10 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
     Route::post('/update/admin/{id}', 'UpdateAdmin')->name('update.admin');
     Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
+    Route::get('/archieve/admin/', 'ArchieveAdmin')->name('archieve.admin');
+    Route::get('/restore/admin/{id}', 'RestoreAdmin')->name('restore.admin');
+    Route::get('/forcedelete/admin/{id}', 'ForceDeleteAdmin')->name('forcedelete.admin');
+
 });
 
 });//End admin group middleware
@@ -225,9 +239,9 @@ Route::middleware(['auth' ])->group(function(){
     //CHECKOUT ALL ROUTE
     Route::controller(BookingController::class)->group(function(){
 
-        Route::get('/checkout/', 'Checkout')->name('checkout');
+        Route::get('/checkout/{id}/', 'Checkout')->name('checkout');
         Route::post('/booking_store/', 'BookingStore')->name('user_booking_store');
-        Route::post('/checkout/store/', 'checkoutStore')->name('checkout.store');
+        Route::post('/checkout/store/{id}/', 'checkoutStore')->name('checkout.store');
 
         //booking updateeahhhhhhhhhhhhhhhhhhhhhhhhhhb kapoyaaaa
         Route::post('/update/booking/status/{id}/', 'UpdateBookingStatus')->name('update.booking.status');
@@ -241,6 +255,10 @@ Route::middleware(['auth' ])->group(function(){
         /////user booking routeeeeee
         Route::get('/user/booking/', 'UserBooking')->name('user.booking');
         Route::get('/user/invoice/{id}/', 'UserInvoice')->name('user.invoice');
+        Route::get('/confirm/booking/{id}/', 'ConfirmBooking')->name('confirm.booking');
+        ////////////email Confirm Booking
+
+        
     
     });//End bookingCONTROLLER middleware
 
@@ -255,7 +273,10 @@ Route::controller(TestimonialController::class)->group(function(){
     Route::get('/edit/testimonial/{id}', 'EditTestimonial')->name('edit.testimonial');
     Route::post('/update/testimonial', 'UpdateTestimonial')->name('testimonial.update'); 
     Route::get('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
-      
+    Route::get('/archieve/testimonial/', 'ArchieveTestimonial')->name('archieve.testimonial');
+    Route::get('/restore/testimonial/{id}', 'RestoreTestimonial')->name('restore.testimonial');
+    Route::get('/forcedelete/testimonial/{id}', 'ForceDeleteTestimonial')->name('forcedelete.testimonial');
+
 });
 
 Route::controller(BookingController::class)->group(function(){
@@ -265,4 +286,6 @@ Route::controller(BookingController::class)->group(function(){
  
 });
 
+
+//Confirm Booking
 

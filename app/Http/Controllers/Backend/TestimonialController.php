@@ -107,8 +107,8 @@ class TestimonialController extends Controller
 
     public function DeleteTestimonial($id){
         $item = Testimonial::findOrFail($id);
-        $img = $item->image;
-        unlink($img);
+
+
         Testimonial::findOrFail($id)->delete();
         $notification = array(
             'message' => 'Testimonial Deleted Successfully',
@@ -116,5 +116,36 @@ class TestimonialController extends Controller
         );
         return redirect()->back()->with($notification);
      }   // End Method 
+
+     public function ArchieveTestimonial(){
+
+        $testimonial = Testimonial::onlyTrashed()->latest()->get();
+        return view('backend.testimonial.archieve_testimonial', compact('testimonial'));
+
+     }//end method
+
+     public function RestoreTestimonial($id)
+{
+    Testimonial::withTrashed()->findOrFail($id)->restore();
+
+    $notification = array(
+        'message' => 'Testimonial Restored Successfully',
+        'alert-type' => 'success',
+    );
+
+    return redirect()->back()->with($notification);
+}
+
+public function ForceDeleteTestimonial($id){
+    $item = Testimonial::findOrFail($id);
+    $img = $item->image;
+    unlink($img);
+    Testimonial::findOrFail($id)->delete();
+    $notification = array(
+        'message' => 'Testimonial Deleted Successfully',
+        'alert-type' => 'success'
+    );
+    return redirect()->back()->with($notification);
+ }   // End Method 
 
 }

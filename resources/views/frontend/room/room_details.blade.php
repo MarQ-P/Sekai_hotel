@@ -8,7 +8,7 @@
         <div class="inner-title">
             <ul>
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href=    "{{url('/')}}">Home</a>
                 </li>
                 <li><i class='bx bx-chevron-right'></i></li>
                 <li>Room Details </li>
@@ -203,8 +203,8 @@
                                     <li><i class='bx bxs-hotel'></i> {{ $item->bed_style }}</li>
                                 </ul>
                                 
-                                <a href="room-details.html" class="book-more-btn">
-                                    Book Now
+                                <a href="{{url('/')}}" class="book-more-btn">
+                                    Check Availability
                                 </a>
                             </div>
                         </div>

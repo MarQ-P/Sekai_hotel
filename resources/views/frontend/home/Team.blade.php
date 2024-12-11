@@ -13,12 +13,12 @@ $team = App\Models\Team::latest()->get();
         <div class="team-slider-two owl-carousel owl-theme pt-45">
 @foreach ( $team as $item )
   
-            <div class="team-item">
-                <a href="team.html">
-                    <img src="{{asset($item->image)}}" alt="Images">
+            <div class="team-item" disabled>
+                <a href="" disabled >
+                    <img src="{{asset($item->image)}}" alt="Images" disabled>
                 </a>
                 <div class="content">
-                    <h3><a href="team.html">{{$item->name}}</a></h3>
+                    <h3><a href="" disabled>{{$item->name}}</a></h3>
                     <span>{{$item->position}}</span>
 
                 </div>

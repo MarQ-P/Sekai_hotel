@@ -47,7 +47,7 @@
                             <td>{{ $item->code }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
-                            <td>{{ $item->payment->payment_method }}</td>
+                            <td>{{ $item->payment?->payment_method ?? 'N/A' }}</td>
                             <td>${{ $item->total_price }}</td>
                             <td>
     <a href="{{ route('download.invoice',$item->id) }}" class="btn btn-warning px-3 radius-10"><i ></i> Download Invoice</a>

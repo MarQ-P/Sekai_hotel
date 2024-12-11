@@ -12,7 +12,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light ">
                 <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{ asset('frontend/assets/img/logos/logo-1.png') }}" class="logo-one" alt="Logo">
+                    <h2 style="color: #668355">Sekai Hotel</h2>
                     <img src="{{ asset('frontend/assets/img/logos/footer-logo1.png') }}" class="logo-two" alt="Logo">
                 </a>
 
@@ -24,10 +24,7 @@
                             </a>
                            
                         </li>
-                        <li class="nav-item">
-                            <a href="about.html" class="nav-link">
-                                About
-                            </a>
+              
                  
     @php
         $room = App\Models\Room::latest()->get();
@@ -39,7 +36,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="contact.html" class="nav-link">
+                            <a class="nav-link" href="#contact" onclick="scrollToContact(event)">
                                 Contact
                             </a>
                         </li>
