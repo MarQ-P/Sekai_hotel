@@ -44,11 +44,9 @@
 						<div class="card rounded-0 m-3 shadow-none bg-transparent mb-0">
 							<div class="card-body p-sm-5">
 								<div class="">
-									<div class="mb-3 text-center">
-										<img src="{{asset('backend/assets/images/logo-icon.png')}}" width="60" alt="">
-									</div>
+							
 									<div class="text-center mb-4">
-										<h5 class="">Hotel Admin</h5>
+										<h5 style="color: #"668355">SEKAI HOTEL</h5>
 										<p class="mb-0">Please log in to your account</p>
 									</div>
 									<div class="form-body">
@@ -59,7 +57,7 @@
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email/Phone/Username</label>
 												<input type="text" name="login" class="form-control @error('login') is-invalid @enderror" 
-                                                id="login" placeholder="jhon@example.com">
+                                                id="login" >
                                    @error('login')
                                         <span class="text-danger"> {{ $message }}  </span>
                                     @enderror

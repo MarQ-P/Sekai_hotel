@@ -159,6 +159,7 @@ public function checkoutStore(Request $request, $id){
         $data->baranggay = $request->baranggay;
         $data->code = $code;
         $data->save();
+
     
         $payment = new Payment();
         $payment->rooms_id = $room->id;
@@ -192,6 +193,7 @@ public function checkoutStore(Request $request, $id){
 
 
         $emailData = [
+            'id' => $data->id,
             'check_in' => $data->check_in,
             'check_out' => $data->check_out,
             'name' => $data->name,
@@ -420,20 +422,17 @@ public function UserInvoice($id){
 
 public function ConfirmBooking($id) {
 
-    $booking = Booking::find($id);
+$booking = Booking::find($id);
 
-
-    return view('mail.booking_mail', compact('booking'));
+if (!$booking) {
+    abort(404, 'Booking not found');
 }
 
-// public function MarkAsRead(Request $request , $notificationId){
-//     $user = Auth::user();
-//     $notification = $user->notifications()->where('id',$notificationId)->first();
-//     if ($notification) {
-//         $notification->markAsRead();
-//     }
-// return response()->json(['count' => $user->unreadNotifications()->count()]);
-//  }// End Method 
+$booking->status = 1;
+$booking->save();
+
+return redirect('/');
+}
 
 }
 

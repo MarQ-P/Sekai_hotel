@@ -325,7 +325,7 @@
 </div>
 <div class="bee-col bee-col-2 bee-col-w8">
 <div class="bee-block bee-block-1 bee-paragraph">
-<p><strong>Hell Sir </strong><br/><strong>Your Request is confirm on this data. </strong></p>
+<p><strong>Hello Sir {{ $booking['name'] }}</strong><br/><strong>Please confirm your request on this email. </strong></p>
  <h4> check in : {{ $booking['check_in'] }}</h4>
  <h4> check Out : {{ $booking['check_out'] }}</h4>
  <h4> User Name: {{ $booking['name'] }}</h4>
@@ -333,7 +333,16 @@
  <h4> Phone : {{ $booking['phone'] }}</h4>
 <p>Thank you for choosing to stay with us at Sekai Hotel. We look forward to providing you with an exceptional experience.</p>
 </div>
-{{-- <div class="bee-block bee-block-2 bee-button"><a class="bee-button-content" <!-- href="{{ route('confirm.booking', $booking->id )}}" --> style="font-size: 14px; background-color: #3c3c3c; border-bottom: 0px solid transparent; border-left: 0px solid transparent; border-radius: 20px; border-right: 0px solid transparent; border-top: 0px solid transparent; color: #ffffff; direction: ltr; font-family: inherit; font-weight: 400; letter-spacing: 1px; max-width: 100%; padding-bottom: 5px; padding-left: 40px; padding-right: 40px; padding-top: 5px; width: auto; display: inline-block;" target="_self"><span dir="ltr" style="word-break: break-word; font-size: 14px; line-height: 200%; letter-spacing: 1px;">Confirm Booking</span></a></div> --}}
+
+
+
+<form>
+	@csrf
+<div class="bee-block bee-block-2 bee-button"><a class="bee-button-content" href="{{ route('confirm.booking', $booking['id'])}}" style="font-size: 14px; background-color: #3c3c3c; border-bottom: 0px solid transparent; border-left: 0px solid transparent; border-radius: 20px; border-right: 0px solid transparent; border-top: 0px solid transparent; color: #ffffff; direction: ltr; font-family: inherit; font-weight: 400; letter-spacing: 1px; max-width: 100%; padding-bottom: 5px; padding-left: 40px; padding-right: 40px; padding-top: 5px; width: auto; display: inline-block;" target="_self"><span dir="ltr" style="word-break: break-word; font-size: 14px; line-height: 200%; letter-spacing: 1px;">Confirm Booking</span></a></div>
+</form>
+
+
+
 </div>
 <div class="bee-col bee-col-3 bee-col-w2">
 <div class="bee-block bee-block-1 bee-spacer">

@@ -37,7 +37,11 @@
             <div class="row">
                 <div class="col-lg-12 ">
                     <div class="form-group">
-                        <input type="text" name="login" id="login" class="form-control" required data-error="Please enter your Username or Email" placeholder="Email/Name/Phone">
+                        <input type="text" name="login" id="login" placeholder="Email/Phone/Username" class="form-control @error('login') is-invalid @enderror" 
+                                                id="login" >
+                                   @error('login')
+                                        <span class="text-danger"> {{ $message }}  </span>
+                                    @enderror
                     </div>
                 </div>
 
@@ -47,16 +51,9 @@
                     </div>
                 </div>
 
-                                        <div class="col-lg-6 col-sm-6 form-condition">
-                                            <div class="agree-label">
-                                                <input type="checkbox" id="chb1">
-                                                <label for="chb1">
-                                                    Remember Me
-                                                </label>
-                                            </div>
-                                        </div>
+                              
             
-                                        <div class="col-lg-6 col-sm-6">
+                                        <div class="col-lg-12 col-sm-6">
                                             <a class="forget" href="{{route ('password.request')}}">Forgot My Password?</a>
                                         </div>
         

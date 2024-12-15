@@ -255,10 +255,10 @@ Route::middleware(['auth' ])->group(function(){
         /////user booking routeeeeee
         Route::get('/user/booking/', 'UserBooking')->name('user.booking');
         Route::get('/user/invoice/{id}/', 'UserInvoice')->name('user.invoice');
-        Route::get('/confirm/booking/{id}/', 'ConfirmBooking')->name('confirm.booking');
-        ////////////email Confirm Booking
 
-        
+
+        //email confimration
+        Route::get('/confirm/booking/{id}/', 'ConfirmBooking')->name('confirm.booking');
     
     });//End bookingCONTROLLER middleware
 
